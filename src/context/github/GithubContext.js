@@ -10,6 +10,7 @@ export const GithubProvider = ({children}) => {
     const initialState = {
         users:[],
         user: {},
+        repos: [],
         loading:false
     }
     
@@ -43,10 +44,29 @@ export const GithubProvider = ({children}) => {
         })
     }
 
+    const getRepos = async (login) =>{
+        setLoading()
+
+        const response = await fetch(`${process.env.REACT_APP_GITHUB_URL}/users?${login}/repos`, 
+        {
+            headers:{
+                Authorization: `token ${process.env.REACT_APP_GITHUB_TOKEN}`
+            },
+        })
+
+        const data = await response.json()
+
+        dispatch({
+            type:"GET_REPOS",
+            payload: data,
+        })
+    }
+
     //get single user
     const getUser = async (login) =>{
         setLoading()
-        const response = await fetch(`${process.env.REACT_APP_GITHUB_URL}/user?${login}`, 
+
+        const response = await fetch(`${process.env.REACT_APP_GITHUB_URL}/users/${login}`, 
         {
             headers:{
                 Authorization: `token ${process.env.REACT_APP_GITHUB_TOKEN}`
@@ -57,13 +77,13 @@ export const GithubProvider = ({children}) => {
            window.location='/notfound'
         }else{
             const data = await response.json()
+
             dispatch({
                 type:"GET_USER",
                 payload: data,
             })
         }
 
-        console.log(state.user)
   
     }
     //set loading
@@ -75,9 +95,11 @@ export const GithubProvider = ({children}) => {
             users: state.users,
             user:state.user,
             loading: state.loading,
+            repos: state.repos,
             searchUsers,
             clearScreen,
-            getUser
+            getUser,
+            getRepos
         }}>
             {children}
         </GithuContext.Provider>

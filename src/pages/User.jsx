@@ -81,23 +81,23 @@ function User() {
           </div>
 
           <div className='w-full rounded-lg shadow-md bg-base-100 stats'>
-            {/* {location && (
+            {location && (
               <div className='stat'>
                 <div className='stat-title text-md'>Location</div>
                 <div className='text-lg stat-value'>{location}</div>
               </div>
-            )} */}
-            {/* {blog && (
+            )} 
+            {blog && (
               <div className='stat'>
                 <div className='stat-title text-md'>Website</div>
                 <div className='text-lg stat-value'>
-                  <a href={websiteUrl} target='_blank' rel='noreferrer'>
-                    {websiteUrl}
+                  <a href={blog} target='_blank' rel='noreferrer'>
+                    {blog}
                   </a>
                 </div>
               </div>
-            )} */}
-            {/* {twitter_username && (
+            )}
+            {twitter_username && (
               <div className='stat'>
                 <div className='stat-title text-md'>Twitter</div>
                 <div className='text-lg stat-value'>
@@ -110,7 +110,7 @@ function User() {
                   </a>
                 </div>
               </div>
-            )} */}
+            )}
           </div>
         </div>
       </div>
