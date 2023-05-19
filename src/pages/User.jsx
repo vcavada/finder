@@ -9,10 +9,11 @@ import RepoList from '../components/repos/RepoList'
 
 function User() {
  
-    const {user,getUser,loading} = useContext(GithuContext)
+    const {user,getUser,repos,getRepos,loading} = useContext(GithuContext)
     const {login} = useParams()
     useEffect(()=>{
         getUser(login)
+        getRepos(login)
     },[])
 
 
@@ -157,11 +158,9 @@ function User() {
               {public_gists}
             </div>
           </div>
-        </div>
-
-        <RepoList/>
+        </div>       
       </div>
-
+      <RepoList repos={repos}/>
       {/* <RepoList repos={repos} /> */}
     </div>
   </>
