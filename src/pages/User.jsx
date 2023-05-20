@@ -14,6 +14,7 @@ function User() {
     useEffect(()=>{
         getUser(login)
         getRepos(login)
+         // eslint-disable-next-line
     },[])
 
 
